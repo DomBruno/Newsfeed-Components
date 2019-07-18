@@ -85,7 +85,14 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
-  }
+  },
+  {
+    title: 'Musical hax0rs melt computer with heavy metal',
+    date: 'Apr 1st, 2019',
+    firstParagraph: 'lorem ipsum dolorum',
+    secondParagraph: 'hekas hekas este bebeloi',
+    thirdParagraph: 'audhu billahi minesh shaitan irrajim'
+  },
 ];
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
@@ -112,3 +119,55 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
 
 */
+
+function createComponent(arr){
+  // define the new elements
+  const article = document.createElement('div');
+  const h2 = document.createElement('h2');
+  const p_date = document.createElement('p');
+  const p1 = document.createElement('p');
+  const p2 = document.createElement('p');
+  const p3 = document.createElement('p');
+  const span = document.createElement('span');
+ 
+  // set up the structure
+  article.appendChild(h2);
+  article.appendChild(p_date);
+  article.appendChild(p1);
+  article.appendChild(p2)
+  article.appendChild(p3)
+  article.appendChild(span)
+ 
+  // add the name of classes to the new elements
+  article.classList.add('article')
+  p_date.classList.add('date');
+  span.classList.add('expandButton')
+ 
+ 
+  // set up the text
+  h2.textContent = arr.title;
+  p_date.textContent = arr.date;
+  p1.textContent = arr.firstParagraph;
+  p2.textContent = arr.secondParagraph;
+  p3.textContent = arr.thirdParagraph;
+  span.textContent = ' Expand...'
+ 
+  // toggle the content of the articles
+  span.addEventListener('click',()=>{
+    article.classList.toggle('article-open');
+     toggleBtntext()
+  })
+ 
+  // change the text of the btn
+ const toggleBtntext =() =>{
+    article.classList.contains('article-open')? span.textContent = 'Show less'
+                                              : span.textContent = 'Expand...';
+  }
+ 
+ 
+  return article
+ 
+ }
+ 
+ const articles = document.querySelector('.articles')
+ data.forEach(article => articles.appendChild(createComponent(article)))
